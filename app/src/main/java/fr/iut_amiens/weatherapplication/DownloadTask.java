@@ -1,7 +1,9 @@
 package fr.iut_amiens.weatherapplication;
 
 import android.content.Context;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
 
 import fr.iut_amiens.weatherapplication.openweathermap.WeatherManager;
@@ -14,15 +16,13 @@ import fr.iut_amiens.weatherapplication.openweathermap.WeatherResponse;
 public class DownloadTask extends AsyncTask<Object, Integer, String>
 {
     private WeatherManager weatherManager = new WeatherManager();
-    private final Context context;
-    private final TextView res;
     private String ville;
     private WeatherResponse weather = null;
+    private MainActivity activity;
 
-    public DownloadTask(Context _context, TextView _res, String _ville)
+    public DownloadTask(String _ville)
     {
-        context = _context;
-        res = _res;
+
         ville = _ville;
     }
 
@@ -40,6 +40,8 @@ public class DownloadTask extends AsyncTask<Object, Integer, String>
 
     @Override
     protected void onPostExecute(String s) {
-        res.setText((int) weather.getId());
+        activity = new MainActivity();
+        activity.UpdateWeather(Long.toString(weather.getId()));
+        //res.setText(Long.toString(weather.getId()));
     }
 }
