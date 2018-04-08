@@ -20,9 +20,8 @@ public class DownloadTask extends AsyncTask<Object, Integer, String>
     private WeatherResponse weather = null;
     private MainActivity activity;
 
-    public DownloadTask(String _ville)
-    {
-
+    public DownloadTask(MainActivity activity, String _ville) {
+        this.activity = activity;
         ville = _ville;
     }
 
@@ -40,8 +39,6 @@ public class DownloadTask extends AsyncTask<Object, Integer, String>
 
     @Override
     protected void onPostExecute(String s) {
-        activity = new MainActivity();
-        activity.UpdateWeather(Long.toString(weather.getId()));
-        //res.setText(Long.toString(weather.getId()));
+        activity.UpdateWeather(Long.toString(weather.getId()),weather.getRain());
     }
 }

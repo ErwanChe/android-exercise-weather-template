@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,12 +16,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import fr.iut_amiens.weatherapplication.openweathermap.WeatherManager;
+import fr.iut_amiens.weatherapplication.openweathermap.WeatherResponse;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private WeatherManager weatherManager;
     private EditText nom_ville;
-    private TextView res;
+    private TextView nom_ville_textView,rain_status;
     private Button search;
     private DownloadTask downloadTask = null;
     private LocationManager locationmanager;
@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nom_ville = findViewById(R.id.nom_ville);
-        res = findViewById(R.id.resultat);
+        nom_ville_textView = findViewById(R.id.nom_ville_text);
         search = findViewById(R.id.rechercher);
+        rain_status = findViewById(R.id.rain_status);
         weatherManager = new WeatherManager();
         locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        downloadTask = new DownloadTask(nom_ville.getText().toString());
+        downloadTask = new DownloadTask(this, nom_ville.getText().toString());
         downloadTask.execute();
     }
 
@@ -76,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (location == null) {
              location = locationmanager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         }
-        Log.d("Activity",location.toString());
     }
 
-    public void UpdateWeather(String idVille)
+    public void UpdateWeather(String idVille,WeatherResponse.Rain cloud)
     {
-        Log.d("lol",idVille);
-        res.setText(idVille);
+        nom_ville_textView.setText(idVille.toString());
+        rain_status.setText(cloud.toString());
+
     }
 
     // Récupération de la météo actuelle :
