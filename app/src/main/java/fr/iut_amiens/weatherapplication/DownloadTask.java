@@ -39,6 +39,6 @@ public class DownloadTask extends AsyncTask<Object, Integer, String>
 
     @Override
     protected void onPostExecute(String s) {
-        activity.UpdateWeather(Long.toString(weather.getId()),weather.getRain());
+        activity.UpdateWeather(weather.getMain(),weather.getWind(),weather.getWeather());
     }
 }

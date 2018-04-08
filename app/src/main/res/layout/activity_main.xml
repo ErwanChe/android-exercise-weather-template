@@ -11,9 +11,11 @@
         android:id="@+id/nom_ville"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="37dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
@@ -25,7 +27,8 @@
         android:id="@+id/rechercher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
         android:layout_marginTop="16dp"
         android:text="Rechercher"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,20 +39,144 @@
         android:id="@+id/nom_ville_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="18dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/nom_ville"
-        app:layout_constraintTop_toBottomOf="@+id/nom_ville" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/id_ville"
+        app:layout_constraintEnd_toEndOf="@+id/nom_ville"
+        app:layout_constraintStart_toEndOf="@+id/nom_ville" />
 
     <TextView
-        android:id="@+id/rain_status"
+        android:id="@+id/id_ville"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="22dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/nom_ville_text"
-        app:layout_constraintTop_toBottomOf="@+id/nom_ville_text" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="Ville :"
+        app:layout_constraintBottom_toTopOf="@+id/id_conditions"
+        app:layout_constraintEnd_toEndOf="@+id/nom_ville" />
+
+    <TextView
+        android:id="@+id/id_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginTop="127dp"
+        android:text="Conditions"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/id_ville"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/pression"
+        app:layout_constraintStart_toEndOf="@+id/pression" />
+
+    <TextView
+        android:id="@+id/id_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginBottom="51dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="51dp"
+        android:text="Temperature :"
+        app:layout_constraintBottom_toTopOf="@+id/id_humidite"
+        app:layout_constraintStart_toStartOf="@+id/id_conditions"
+        app:layout_constraintTop_toTopOf="@+id/id_conditions" />
+
+    <TextView
+        android:id="@+id/pression"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginBottom="83dp"
+        android:layout_marginTop="83dp"
+        app:layout_constraintBottom_toBottomOf="@+id/id_vent"
+        app:layout_constraintEnd_toStartOf="@+id/humidite"
+        app:layout_constraintStart_toStartOf="@+id/humidite"
+        app:layout_constraintTop_toTopOf="@+id/id_conditions" />
+
+    <TextView
+        android:id="@+id/id_pression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pression : "
+        app:layout_constraintEnd_toEndOf="@+id/id_temperature"
+        app:layout_constraintTop_toTopOf="@+id/pression" />
+
+    <TextView
+        android:id="@+id/humidite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/id_humidite"
+        app:layout_constraintTop_toBottomOf="@+id/pression" />
+
+    <TextView
+        android:id="@+id/id_humidite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Humidité :"
+        app:layout_constraintStart_toStartOf="@+id/id_pression"
+        app:layout_constraintTop_toBottomOf="@+id/id_pression" />
+
+    <TextView
+        android:id="@+id/id_vent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="198dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Vent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/id_humidite" />
+
+    <TextView
+        android:id="@+id/vent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/condition"
+        app:layout_constraintStart_toEndOf="@+id/id_vitesse" />
+
+    <TextView
+        android:id="@+id/id_vitesse"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Vitesse :"
+        app:layout_constraintBottom_toBottomOf="@+id/vent"
+        app:layout_constraintEnd_toEndOf="@+id/id_condition"
+        app:layout_constraintTop_toTopOf="@+id/vent" />
+
+    <TextView
+        android:id="@+id/condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/vent"
+        app:layout_constraintStart_toStartOf="@+id/vent"
+        app:layout_constraintTop_toTopOf="@+id/id_condition" />
+
+    <TextView
+        android:id="@+id/id_condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="40dp"
+        android:text="Conditions :"
+        app:layout_constraintStart_toEndOf="@+id/id_vent"
+        app:layout_constraintTop_toBottomOf="@+id/id_vent" />
 
 </android.support.constraint.ConstraintLayout>

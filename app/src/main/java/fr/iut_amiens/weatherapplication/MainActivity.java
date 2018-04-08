@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.List;
+
 import fr.iut_amiens.weatherapplication.openweathermap.WeatherManager;
 import fr.iut_amiens.weatherapplication.openweathermap.WeatherResponse;
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private WeatherManager weatherManager;
     private EditText nom_ville;
-    private TextView nom_ville_textView,rain_status;
+    private TextView nom_ville_textView,temperature,humidite,pression,vent,condition;
     private Button search;
     private DownloadTask downloadTask = null;
     private LocationManager locationmanager;
@@ -33,9 +35,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nom_ville = findViewById(R.id.nom_ville);
-        nom_ville_textView = findViewById(R.id.nom_ville_text);
         search = findViewById(R.id.rechercher);
-        rain_status = findViewById(R.id.rain_status);
+        nom_ville_textView = findViewById(R.id.nom_ville_text);
+        temperature = findViewById(R.id.temperature);
+        humidite = findViewById(R.id.humidite);
+        pression = findViewById(R.id.pression);
+        vent = findViewById(R.id.vent);
+        condition = findViewById(R.id.condition);
         weatherManager = new WeatherManager();
         locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -79,10 +85,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void UpdateWeather(String idVille,WeatherResponse.Rain cloud)
+    public void UpdateWeather(WeatherResponse.Main list_main, WeatherResponse.Wind Vent, List<WeatherResponse.Weather> Temp)
     {
-        nom_ville_textView.setText(idVille.toString());
-        rain_status.setText(cloud.toString());
+        nom_ville_textView.setText(nom_ville.getText().toString());
+        temperature.setText(String.valueOf(list_main.getTemp())+" °C");
+        pression.setText(String.valueOf(list_main.getPressure())+" hPa");
+        humidite.setText(String.valueOf(list_main.getHumidity())+" %");
+        vent.setText(String.valueOf(Vent.getSpeed())+" m/s");
+        condition.setText(String.valueOf(Temp.get(0).getDescription()));
 
     }
 
